@@ -269,58 +269,32 @@ int main() {
       subkey[0][i][j] = Cipher_Key[i][j];
       }
   }
-
+  cout << "input" << endl;
   show(state);
-  cout << "Start of Round" <<endl;
+
   Start_of_Round(state,Cipher_Key);
-  show(state);
-  cout << "SubBytes" << endl;
   SubBytes(state);
-  show(state);
-  cout << "ShiftRows" << endl;
   ShiftRows(state);
-  show(state);
-  cout << "MixColumns" << endl;
   MixColumns(state);
-  show(state);
-  cout << "Key Expansion" << endl;
   AddRoundKey(Cipher_Key,0,subkey);
-  show(Cipher_Key);
 
-    show(state);
     for(int i = 0; i < 8; i++){
-    cout << "Start of Round" << " " << i <<endl;
     Start_of_Round(state,Cipher_Key);
-    show(state);
-    cout << "SubBytes" << endl;
     SubBytes(state);
-    show(state);
-    cout << "ShiftRows" << endl;
     ShiftRows(state);
-    show(state);
-    cout << "MixColumns" << endl;
     MixColumns(state);
-    show(state);
-    cout << "Key Expansion" << endl;
     AddRoundKey(Cipher_Key, i+1,subkey);
-    show(Cipher_Key);
   }
-  cout << "Start of Round" <<endl;
     Start_of_Round(state,Cipher_Key);
-    show(state);
-    cout << "SubBytes" << endl;
     SubBytes(state);
-    show(state);
-    cout << "ShiftRows" << endl;
     ShiftRows(state);
-    show(state);
-    cout << "Key Expansion" << endl;
     AddRoundKey(Cipher_Key,9,subkey);
-    show(Cipher_Key);
     Start_of_Round(state,Cipher_Key);
+
+    cout << "after encryption" << endl;
     show(state);
 
-    cout << "subkey_start----------------------------------------------------------------------------------------------------------------------------" << endl;
+    /*cout << "subkey_start----------------------------------------------------------------------------------------------------------------------------" << endl;
     for(int i = 0; i < 11; i++){
       for(int j = 0; j < 4; j++){
         for(int k = 0; k < 4; k++){
@@ -329,28 +303,20 @@ int main() {
       }cout << endl;
     }
     cout << "subkey_end------------------------------------------------------------------------------------------------------------------------------" << endl;
+    */
 
-  cout << "AfterMixColums" << endl;
   End_of_Round(state,10,subkey);
-  show(state);
   InvShiftRows(state);
-  show(state);
   InvSubBytes(state);
-  show(state);
-  cout << "AfterMixColums" << endl;
 
   for(int i = 9; i > 0;i--){
     End_of_Round(state,i,subkey);
-    show(state);
-    cout <<"InvMixColumns" << endl;
     InvCoulumns(state);
-    show(state);
     InvShiftRows(state);
-    show(state);
     InvSubBytes(state);
-    show(state);
   }
-  cout << "ans" << endl;
+
   End_of_Round(state,0,subkey);
+    cout << "after decryption" << endl;
   show(state);
  }
